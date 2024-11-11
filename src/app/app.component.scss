@@ -1,0 +1,48 @@
+.todo-card {
+  width: 575px;
+  margin: 20px auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.todo-title {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  text-underline-position: from-font;
+}
+
+.container-add-task {
+  margin-top: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.example-form-field {
+  width: 350px;
+  margin-right: 2%;
+}
+
+.container-todo-task {
+  display: flex;
+  align-items: center;
+  margin-top: 1%;
+  justify-content: space-between;
+}
+
+.task-action-btn {
+  display: flex;
+}
+
+.check-btn {
+  color: #61d769;
+}
+
+.todo-title-conclude {
+  @extend .todo-title;
+  font-size: 32px;
+}
