@@ -1,25 +1,43 @@
 <mat-card class="todo-card">
   <h1 class="todo-title">Todo List</h1>
   <mat-divider></mat-divider>
-  <div class="container-add-task">
-    <mat-form-field class="example-form-field">
+
+  <form
+    class="container-add-task"
+    (ngSubmit)="addTodo()"
+    [formGroup]="todoForm"
+    novalidate
+  >
+    <mat-form-field class="todo-form-field">
       <mat-label>Nova tarefa</mat-label>
-      <input matInput type="text" />
+      <input matInput type="text" formControlName="todoInput" maxlength="30" />
     </mat-form-field>
-    <button mat-flat-button>Adicionar</button>
+    <button mat-flat-button type="submit">Adicionar</button>
+  </form>
+  <div *ngIf="todoList.length === 0" class="todo-list-empty">
+    Adicione uma nova tarefa para começar a lista.
   </div>
-  <div class="container-todo-task">
-    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+  <div class="container-todo-task" *ngFor="let todo of todoList; let i = index">
+    <mat-checkbox
+      [checked]="todo.checked"
+      (change)="updateStatusTask($event.checked, i)"
+      >{{ todo.name }}</mat-checkbox
+    >
     <div class="container-action-btn">
-      <button mat-icon-button class="check-btn">
+      <button mat-icon-button class="check-btn" (click)="completeTask(i)">
         <mat-icon>check_circle</mat-icon>
       </button>
-      <button mat-icon-button color="warn">
+      <button mat-icon-button color="warn" (click)="removeTask(i)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
   </div>
-  <h1 class="todo-title-conclude">Tarefas Concluídas</h1>
-  <mat-divider></mat-divider>
-  <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+  <mat-divider *ngIf="todoListChecked.length >= 1"></mat-divider>
+  <div *ngFor="let todo of todoListChecked; let i = index">
+    <mat-checkbox
+      [checked]="todo.checked"
+      (change)="updateStatusTask($event.checked, i)"
+      ><div class="todo-list-conclude">{{ todo.name }}</div></mat-checkbox
+    >
+  </div>
 </mat-card>

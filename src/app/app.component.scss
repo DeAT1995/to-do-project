@@ -22,9 +22,14 @@
   justify-content: space-between;
 }
 
-.example-form-field {
+.todo-form-field {
   width: 350px;
   margin-right: 2%;
+}
+
+.todo-list-empty{
+  margin-bottom: 1%;
+  font-size: 20px;
 }
 
 .container-todo-task {
@@ -45,4 +50,8 @@
 .todo-title-conclude {
   @extend .todo-title;
   font-size: 32px;
+}
+
+.todo-list-conclude {
+  text-decoration: line-through;
 }
