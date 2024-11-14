@@ -1,43 +1,58 @@
-<mat-card class="todo-card">
-  <h1 class="todo-title">Todo List</h1>
-  <mat-divider></mat-divider>
+<div [ngClass]="isDarkMode ? 'dark-mode' : 'light-mode'">
+  <div class="btn-icon-mode">
+    <button mat-icon-button (click)="toggleTheme()">
+      <mat-icon>{{ isDarkMode ? "brightness_2" : "brightness_4" }}</mat-icon>
+    </button>
+  </div>
+  <mat-card class="todo-card card-body">
+    <h1 class="todo-title">Todo List</h1>
+    <mat-divider></mat-divider>
 
-  <form
-    class="container-add-task"
-    (ngSubmit)="addTodo()"
-    [formGroup]="todoForm"
-    novalidate
-  >
-    <mat-form-field class="todo-form-field">
-      <mat-label>Nova tarefa</mat-label>
-      <input matInput type="text" formControlName="todoInput" maxlength="30" />
-    </mat-form-field>
-    <button mat-flat-button type="submit">Adicionar</button>
-  </form>
-  <div *ngIf="todoList.length === 0" class="todo-list-empty">
-    Adicione uma nova tarefa para começar a lista.
-  </div>
-  <div class="container-todo-task" *ngFor="let todo of todoList; let i = index">
-    <mat-checkbox
-      [checked]="todo.checked"
-      (change)="updateStatusTask($event.checked, i)"
-      >{{ todo.name }}</mat-checkbox
+    <form
+      class="container-add-task"
+      (ngSubmit)="addTodo()"
+      [formGroup]="todoForm"
+      novalidate
     >
-    <div class="container-action-btn">
-      <button mat-icon-button class="check-btn" (click)="completeTask(i)">
-        <mat-icon>check_circle</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="removeTask(i)">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <mat-form-field class="todo-form-field">
+        <mat-label>Nova tarefa</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="todoInput"
+          maxlength="30"
+        />
+      </mat-form-field>
+      <button mat-flat-button type="submit">Adicionar</button>
+    </form>
+    <div *ngIf="todoList.length === 0" class="todo-list-empty">
+      Adicione uma nova tarefa para começar a lista.
     </div>
-  </div>
-  <mat-divider *ngIf="todoListChecked.length >= 1"></mat-divider>
-  <div *ngFor="let todo of todoListChecked; let i = index">
-    <mat-checkbox
-      [checked]="todo.checked"
-      (change)="updateStatusTask($event.checked, i)"
-      ><div class="todo-list-conclude">{{ todo.name }}</div></mat-checkbox
+    <div
+      class="container-todo-task"
+      *ngFor="let todo of todoList; let i = index"
     >
-  </div>
-</mat-card>
+      <mat-checkbox
+        [checked]="todo.checked"
+        (change)="updateStatusTask($event.checked, i)"
+        ><span class="label-checkbox-list">{{ todo.name }}</span></mat-checkbox
+      >
+      <div class="container-action-btn">
+        <button mat-icon-button class="check-btn" (click)="completeTask(i)">
+          <mat-icon>check_circle</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="removeTask(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+    <mat-divider *ngIf="todoListChecked.length >= 1"></mat-divider>
+    <div *ngFor="let todo of todoListChecked; let i = index">
+      <mat-checkbox
+        [checked]="todo.checked"
+        (change)="updateStatusTask($event.checked, i)"
+        ><span class="todo-list-conclude label-checkbox-list">{{ todo.name }}</span></mat-checkbox
+      >
+    </div>
+  </mat-card>
+</div>

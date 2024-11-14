@@ -1,3 +1,29 @@
+/* light-mode */
+.light-mode {
+  background-color: white;
+  color: black;
+}
+
+/* dark-mode */
+.dark-mode {
+  background-color: #333;
+  color: white;
+  height: 100vh;
+
+  .card-body {
+    background-color: rgb(21, 20, 20);
+  }
+
+  .label-checkbox-list{
+    color: white;
+  }
+}
+
+.btn-icon-mode{
+  display: flex;
+  justify-content: end;
+}
+
 .todo-card {
   width: 575px;
   margin: 20px auto;
@@ -27,7 +53,7 @@
   margin-right: 2%;
 }
 
-.todo-list-empty{
+.todo-list-empty {
   margin-bottom: 1%;
   font-size: 20px;
 }
@@ -45,11 +71,6 @@
 
 .check-btn {
   color: #61d769;
-}
-
-.todo-title-conclude {
-  @extend .todo-title;
-  font-size: 32px;
 }
 
 .todo-list-conclude {

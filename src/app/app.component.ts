@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -33,6 +33,7 @@ export class AppComponent {
   todoForm!: FormGroup;
   todoList: { name: string; checked: boolean }[] = [];
   todoListChecked: { name: string; checked: boolean }[] = [];
+  isDarkMode = false;
 
   constructor(private _fb: FormBuilder) {
     this.todoForm = this._fb.group({
@@ -81,5 +82,10 @@ export class AppComponent {
 
   removeTask(index: number) {
     this.todoList.splice(index, 1);
+  }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    document.body.className = this.isDarkMode ? 'dark-mode' : 'light-mode';
   }
 }
